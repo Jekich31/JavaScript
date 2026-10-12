@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!--TASK1-->
+    <script src="/02.10/node.js"></script>
+    <script>
+    //task2
+        class HtmlElement {
+            constructor(tagName, isSelfClosing = false, textContent = "") {
+                this.tagName = tagName;
+                this.isSelfClosing = isSelfClosing;
+                this.textContent = textContent;
+                this.attributes = [];
+                this.styles = [];
+                this.children = [];
+            }
+
+            setAttribute(name, value) {
+                this.attributes.push({ name, value });
+            }
+
+            setStyle(name, value) {
+                this.styles.push({ name, value });
+            }
+
+            addChild(element) {
+                this.children.push(element);
+            }
+
+            prependChild(element) {
+                this.children.unshift(element);
+            }
+
+            getHtml() {
+                const attrs = this.attributes
+                    .map(attr => ` ${attr.name}="${attr.value}"`)
+                    .join("");
+                const stylesStr = this.styles.length > 0
+                    ? ` style="${this.styles.map(s => `${s.name}:${s.value};`).join(" ")}"`
+                    : "";
+
+                const openTag = `<${this.tagName}${attrs}${stylesStr}>`;
+
+                if (this.isSelfClosing) {
+                    return openTag;
+                }
+                const childrenHtml = this.children.map(child => child.getHtml()).join("");
+
+                return `${openTag}${this.textContent}${childrenHtml}</${this.tagName}>`;
+            }
+        }
+
+        //task3
+        class CssClass {
+            constructor(className) {
+                this.className = className;
+                this.styles = [];
+            }
+
+            setStyle(name, value) {
+                const existing = this.styles.find(s => s.name === name);
+                if (existing) {
+                    existing.value = value;
+                } else {
+                    this.styles.push({ name, value });
+                }
+            }
+
+            removeStyle(name) {
+                this.styles = this.styles.filter(s => s.name !== name);
+            }
+
+            getCss() {
+                const stylesCode = this.styles
+                    .map(s => `\t${s.name}: ${s.value};`)
+                    .join("\n");
+                return `.${this.className} {\n${stylesCode}\n}`;
+            }
+        }
+
+        //task4
+        class HtmlBlock {
+            constructor(rootElement) {
+                this.rootElement = rootElement;
+                this.cssClasses = [];
+            }
+
+            addCssClass(cssClass) {
+                this.cssClasses.push(cssClass);
+            }
+
+            getCode() {
+                const stylesCode = this.cssClasses.map(c => c.getCss()).join("\n");
+                const styleTag = `<style>\n${stylesCode}\n</style>`;
+                const htmlContent = this.rootElement.getHtml();
+
+                return `${styleTag}\n${htmlContent}`;
+            }
+        }
+
+        const wrapClass = new CssClass("wrap");
+        wrapClass.setStyle("display", "flex");
+
+        const blockClass = new CssClass("block");
+        blockClass.setStyle("width", "300px");
+        blockClass.setStyle("margin", "10px");
+
+        const imgClass = new CssClass("img");
+        imgClass.setStyle("width", "100%");
+
+        const textClass = new CssClass("text");
+        textClass.setStyle("text-align", "justify");
+
+        const rootDiv = new HtmlElement("div");
+        rootDiv.setAttribute("id", "wrapper");
+        rootDiv.setAttribute("class", "wrap");
+
+        function createCard() {
+            const card = new HtmlElement("div");
+            card.setAttribute("class", "block");
+
+            const h3 = new HtmlElement("h3", false, "What is Lorem Ipsum?");
+            card.addChild(h3);
+
+            const img = new HtmlElement("img", true);
+            img.setAttribute("class", "img");
+            img.setAttribute("src", "lipsum.jpg");
+            img.setAttribute("alt", "Lorem Ipsum");
+            card.addChild(img);
+
+            const p = new HtmlElement("p", false, '"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."');
+            p.setAttribute("class", "text");
+
+            const a = new HtmlElement("a", false, "More...");
+            a.setAttribute("href", "https://www.lipsum.com/");
+            a.setAttribute("target", "_blank");
+            p.addChild(a);
+
+            card.addChild(p);
+            return card;
+        }
+
+        rootDiv.addChild(createCard());
+        rootDiv.addChild(createCard());
+
+        const htmlDoc = new HtmlBlock(rootDiv);
+        htmlDoc.addCssClass(wrapClass);
+        htmlDoc.addCssClass(blockClass);
+        htmlDoc.addCssClass(imgClass);
+        htmlDoc.addCssClass(textClass);
+
+        document.write(htmlDoc.getCode());
+    </script>
+</body>
+</html>
