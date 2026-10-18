@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/08.10/style.css">
+    <title>Homework08.10</title>
+</head>
+<body>
+    <div class="container">
+    <h1>Мій список цілей</h1>
+    <input type="text" id="goalInput">
+    <button class="add">Додати</button>
+    <span id="error-message" style="color: red;"></span>
+<div class="filter">
+    <button class="filter-all active">Всі</button>
+    <button class="filter-active">Активні</button>
+    <button class="filter-done">Виконані</button>
+</div>
+    <ul class="list-of-tasks">
+
+    </ul>
+   <div class="counters">
+        <p>Усього: <span id="total-count">0</span></p>
+        <p>Виконано: <span id="completed-count">0</span></p>
+    </div>
+    <p id="empty-message">Поки що цілей немає</p>
+    </div>
+    <script src="/08.10/node.js"></script>
+</body>
+</html>

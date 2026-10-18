@@ -1,0 +1,18 @@
+.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.filter button.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+.list-of-tasks li {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.list-of-tasks li {
+  padding: 8px 12px;
+}
