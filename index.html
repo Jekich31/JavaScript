@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOMEWORK09.10</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+          <h1>HOMEWORK09.10</h1>
+        <header>
+            <h2>Магазин товарів</h2>
+            <button id="themeToggleBtn" class="btn-primary">Темна тема</button>
+        </header>
+        <input type="text" id="searchInput" class="search-box" placeholder="Пошук товарів...">
+        <div class="layout">
+            <main>
+                <h2>Товари</h2>
+                <div id="productsContainer"></div>
+            </main>
+
+            <aside class="cart-section">
+                <h2>Кошик</h2>
+                <div id="cartContainer">Кошик порожній</div>
+                
+                <div class="cart-summary">
+                    <div>Кількість товарів: <span id="cartCount">0</span></div>
+                    <div>Загальна сума: $<span id="cartTotal">0</span></div>
+                </div>
+
+                <div class="actions-cart">
+                    <button id="emptyCartBtn" class="btn-danger" style="width: 100%;">Очистити кошик</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <script src="node.js"></script>
+</body>
+</html>
