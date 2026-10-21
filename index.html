@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Homework13.10</title>
+   
+</head>
+<body>
+    <div class="main-container">
+        <h2>Create new color</h2>
+
+        <form id="color-form"co class="color-form" novalidate>
+            <div class="form-row">
+                <label for="color-name">Color:</label>
+                <div class="input-wrapper">
+                    <input type="text" id="color-name" name="colorName" autocomplete="off">
+                    <span class="error-msg" id="name-error"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label for="color-type">Type:</label>
+                <div class="input-wrapper">
+                    <select id="color-type" name="colorType">
+                        <option value="RGB">RGB</option>
+                        <option value="RGBA">RGBA</option>
+                        <option value="HEX">HEX</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label for="color-code">Code:</label>
+                <div class="input-wrapper">
+                    <input type="text" id="color-code" name="colorCode" autocomplete="off">
+                    <span class="error-msg" id="code-error"></span>
+                </div>
+            </div>
+
+            <div class="btn-submit-container">
+                <button type="submit" class="btn-save">Save</button>
+            </div>
+        </form>
+
+        <h2>All colors</h2>
+        <div id="colors-palette" class="palette-container"></div>
+    </div>
+    <script src="node.js"></script>
+</body>
+</html>
