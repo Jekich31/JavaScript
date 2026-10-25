@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Пошук фільмів - OMDB API</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+   
+  </style>
+</head>
+<body>
+
+  <h2>Search:</h2>
+  <div class="container-box">
+    <form id="search-form">
+      <div class="form-group">
+        <label for="api-key">API Key:</label>
+        <input type="text" id="api-key" value="5509b48d" placeholder="Ваш OMDB API Key">
+      </div>
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" required placeholder="Например, hello">
+      </div>
+      <div class="form-group">
+        <label for="type">Type:</label>
+        <select id="type">
+          <option value="movie">Movie</option>
+          <option value="series">Series</option>
+          <option value="episode">Episode</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-search">Search</button>
+    </form>
+  </div>
+
+  <div id="status-message"></div>
+
+  <div id="films-section" class="films-container hidden">
+    <h3>Films:</h3>
+    <div id="films-list" class="films-list"></div>
+    <div id="pagination" class="pagination"></div>
+  </div>
+
+  <div id="details-section" class="hidden">
+    <h3>Film info:</h3>
+    <div class="details-box" id="details-content"></div>
+  </div>
+  <script src="node.js"></script>
+</body>
+</html>
